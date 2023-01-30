@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DURATION=5000
+DURATION=750
 
 case $1 in
     "mute")
@@ -8,13 +8,8 @@ case $1 in
         notify-send -t $DURATION $(pactl get-sink-mute 3)
     ;;
 
-    "vd")
-        pactl set-sink-volume 3 -$2%
-        notify-send -t $DURATION $(pactl get-sink-volume 3 | grep -o -E " ?[0-9]?[0-9]?[0-9]%")
-    ;;
-
-    "vu")
-        pactl set-sink-volume 3 +$2%
+    "v")
+        pactl set-sink-volume 3 $2
         notify-send -t $DURATION $(pactl get-sink-volume 3 | grep -o -E " ?[0-9]?[0-9]?[0-9]%")
     ;;
 
