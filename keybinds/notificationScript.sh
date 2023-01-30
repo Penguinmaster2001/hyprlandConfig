@@ -1,23 +1,37 @@
 #!/bin/bash
 
+change_all_sink_volume () {
+    for SINK in $(pacmd list-sinks | grep 'index:' | cut -b12-)
+    do
+        pactl set-sink-volume $SINK $1
+    done
+}
+
+mute_all_sinks () {
+    for SINK in $(pacmd list-sinks | grep 'index:' | cut -b12-)
+    do
+        pactl set-sink-mute $SINK toggle
+    done
+}
+
 DURATION=500
 
 case $1 in
     "mute")
-        pactl set-sink-mute 3 toggle
-        notify-send -t $DURATION "Volume" "$(pactl get-sink-mute 3)"
+        mute_all_sinks
+        notify-send -t $DURATION "Mute" "$(pamixer --get-mute)"
     ;;
-
+    
     "v")
-        pactl set-sink-volume 3 $2
-        notify-send -t $DURATION "Volume" "$(pactl get-sink-volume 3 | grep -o -E " ?[0-9]?[0-9]?[0-9]%")"
+        change_all_sink_volume $2
+        notify-send -t $DURATION "Volume" "$(pamixer --get-volume-human)"
     ;;
-
+    
     "b")
         brightnessctl -d intel_backlight s $2
         notify-send -t $DURATION Brightness "$(($(brightnessctl get) / 960))%"
     ;;
-
+    
     *)
         notify-send "error in keybind notification script"
     ;;
