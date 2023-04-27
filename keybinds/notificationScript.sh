@@ -14,7 +14,9 @@ mute_all_sinks () {
     done
 }
 
-DURATION=500
+DURATION=400
+
+
 
 case $1 in
     "mute")
