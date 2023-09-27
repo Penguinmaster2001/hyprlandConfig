@@ -12,10 +12,10 @@ appBinds = [
     (["$mainMod"], "R", "runner"),
     # (["$mainMod"], "T", ""),
     # (["$mainMod"], "Y", ""),
-    (["$mainMod"], "U", "Math122"),
-    (["$mainMod"], "I", "Math101"),
-    (["$mainMod"], "O", "ATWP"),
-    (["$mainMod"], "P", "CSC115"),
+    # (["$mainMod"], "U", "Math122"),
+    # (["$mainMod"], "I", "Math101"),
+    # (["$mainMod"], "O", "ATWP"),
+    # (["$mainMod"], "P", "CSC115"),
 
 
     (["$mainMod"], "A", "VSCode"),
@@ -23,15 +23,39 @@ appBinds = [
     (["$mainMod"], "D", "Calculator"),
     # (["$mainMod"], "F", "")
 
-    (["$mainMod"], "G", "Pearson"),
-    (["$mainMod"], "H", "Brightspace"),
-    (["$mainMod"], "j", "Wikipedia"),
-    (["$mainMod"], "K", "Desmos"),
+    # (["$mainMod"], "G", "Pearson"),
+    # (["$mainMod"], "H", "Brightspace"),
+    # (["$mainMod"], "j", "Wikipedia"),
+    # (["$mainMod"], "K", "Desmos"),
+    (["$mainMod"], "L", "Firefox")
+]
+
+
+windowBinds = [
+    (["$mainMod"], "E", "nemo"),
+    (["$mainMod"], "R", "runner"),
+    # (["$mainMod"], "T", ""),
+    # (["$mainMod"], "Y", ""),
+    # (["$mainMod"], "U", "Math122"),
+    # (["$mainMod"], "I", "Math101"),
+    # (["$mainMod"], "O", "ATWP"),
+    # (["$mainMod"], "P", "CSC115"),
+
+
+    (["$mainMod"], "A", "VSCode"),
+    (["$mainMod"], "S", "Gedit"),
+    (["$mainMod"], "D", "Calculator"),
+    # (["$mainMod"], "F", "")
+
+    # (["$mainMod"], "G", "Pearson"),
+    # (["$mainMod"], "H", "Brightspace"),
+    # (["$mainMod"], "j", "Wikipedia"),
+    # (["$mainMod"], "K", "Desmos"),
     (["$mainMod"], "L", "Firefox")
 ]
 
 categories = ["Apps", "Window", "Workspace", "System"]
-bindingLists = [appBinds, appBinds, appBinds, appBinds]
+bindingLists = [appBinds, windowBinds, appBinds, appBinds]
 
 class MyWindow(Gtk.Window):
     def __init__(self):
