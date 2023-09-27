@@ -56,7 +56,11 @@ do
 
     if [[ $capacity -le $suspend_level && $status = 'Discharging' && $suspend_timer -eq 0 ]]
     then
-        notify-send -u critical 'Battery Critical! Hibernating!' "Goodnight"
+        notify-send -t 1000 -u critical 'Battery Critical! Hibernating!' "Goodnight"
+
+        sleep 1
+
+        notify-send -u critical 'Laptop hibernated due to low battery'
 
         systemctl hybrid-sleep
     fi
