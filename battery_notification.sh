@@ -27,7 +27,7 @@ do
         notif_bat_full='true'
 
     # Notify about suspend soon
-    elif [[ $capacity -le $suspend_level && $status = 'Discharging' ]]
+    elif [[ $capacity -le $suspend_level && $status = 'Discharging' && $suspend_timer -ge 0 ]]
     then
         suspend_timer=$((suspend_timer-loop_time))
         notify-send -t 2000 -u critical "Battery is at $capacity%" "Suspending in $suspend_timer seconds\!"
@@ -44,6 +44,7 @@ do
 
         timer=$wait_time
     fi
+
 
     # Notify when charging state changed, and allow to notify if battery is full again
     if [[ ! $last_status = $status ]]
@@ -62,8 +63,11 @@ do
 
         notify-send -u critical 'Laptop hibernated due to low battery'
 
+        echo "Suspended at $(date), $(cat /sys/class/power_supply/BAT0/capacity)%" >> /home/penguin/.config/hypr/logs/batt_suspend.log
+
         systemctl hybrid-sleep
     fi
+
 
     last_status=$status
 
